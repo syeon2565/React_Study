@@ -1,0 +1,55 @@
+.home{
+  position: relative;
+}
+.home img{
+  width:100%;
+}
+.overlay{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  padding:10px;
+}
+.header{
+  display: flex;
+}
+.logo{
+  color: red;
+  font-size: 25px;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+ul{
+  display: flex;
+  color: white;
+  list-style: none;
+};
+.App{
+  /* margin: 10px; */
+}
+/* 
+ul{
+  list-style: none;
+  display: flex;
+} */
+li{
+  padding: 6.5px;
+  /* margin-top: 0px; */
+  /* list-style: none; */
+
+}
+/* img{
+  width: 100%;
+}
+.ar{
+  display: absolute;
+} */
+
+.img_name{
+  position: absolute;
+}
+a:link, a:visited,
+a:hover, a:active{
+  text-decoration: none;
+}
