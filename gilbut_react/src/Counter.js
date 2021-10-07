@@ -2,17 +2,16 @@ import React from "react";
 import { Component } from "react";
 
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       number: 0,
+      fixednumber: 0,
     };
-  }
   render() {
-    const { number } = this.state;
+    const { number,fixednumber } = this.state;
     return (
       <div>
         <h1>{number}</h1>
+        <h2>바뀌지 않는 값 : {fixednumber}</h2>
         <button
           onClick={() => {
             this.setState({ number: number + 1 });
