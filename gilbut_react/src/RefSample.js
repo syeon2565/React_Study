@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import "./ValidationSample.css";
 
-class RefSample extends Component {
-  input = React.createRef();
-  hanleFocus = () =>{
-    this.input.current.focus();
+const RefSample = () =>{
+  const id = useRef(1);
+  const setId = (n) =>{
+    id.current = n;
   }
-  render() {
-    return (
-      <div>
-        <input ref={this.input}/>
-      </div>
-    )
+  const printId = ()=>{
+    console.log(id.current);
   }
+  return (
+    <div>
+      refsample
+    </div>
+  )
 }
 export default RefSample;
