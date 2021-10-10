@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
-import RefSample from "./RefSample";
+import Info from "./Info";
 
 const App = () => {
-  return <RefSample/>
+  return <Info/>
 };
 export default App;
