@@ -18,60 +18,20 @@ export const getUsers = createRequestThunk(GET_USERS, api.getUsers);
 // 요청의 로딩중 상태는 loading 이라는 객체에서 관리합니다.
 
 const initialState = {
-  loading: {
-    GET_POST: false,
-    GET_USERS: false,
-  },
-  post: null,
-  users: null,
+  post:null,
+  users:null
 };
 
 const sample = handleActions(
   {
-    [GET_POST]: (state) => ({
+    [GET_POST_SUCCESS]:(state,action)=>({
       ...state,
-      loading: {
-        ...state.loading,
-        GET_POST: true, // 요청 시작
-      },
+      post:action.payload
     }),
-    [GET_POST_SUCCESS]: (state, action) => ({
+    [GET_USERS_SUCCESS]:(state,action)=>({
       ...state,
-      loading: {
-        ...state.loading,
-        GET_POST: false, // 요청 완료
-      },
-      post: action.payload,
-    }),
-    [GET_POST_FAILURE]: (state, action) => ({
-      ...state,
-      loading: {
-        ...state.loading,
-        GET_POST: false, // 요청 완료
-      },
-    }),
-    [GET_USERS]: (state) => ({
-      ...state,
-      loading: {
-        ...state.loading,
-        GET_USERS: true, // 요청 시작
-      },
-    }),
-    [GET_USERS_SUCCESS]: (state, action) => ({
-      ...state,
-      loading: {
-        ...state.loading,
-        GET_USERS: false, // 요청 완료
-      },
-      users: action.payload,
-    }),
-    [GET_USERS_FAILURE]: (state, action) => ({
-      ...state,
-      loading: {
-        ...state.loading,
-        GET_USERS: false, // 요청 완료
-      },
-    }),
+      users:action.payload
+    })
   },
   initialState
 );
