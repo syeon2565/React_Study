@@ -13,9 +13,9 @@ SPA(Single Page Application)는 말 그대로 한 개의 페이지로 이루어�
 
 리액트는 뷰 렌더링을 사용자의 브라우저가 담당하도록 하고, 애플리케이션을 브라우저에 불러와서 실행시킨 후에 사용자와의 인터랙션이 발생하면 필요한 부분만 자바스크립트를 사용하여 업데이트 새로운 데이터가 필요할 시? 서버 API를 호출하여 필요한 데이터만 새로 불러와 애플리케이션에 사용
 
-- 라우팅? 다른 주소에 다른 화면을 보여주는 것! 리액트 라우터, 리치 라우터, Next.js등
+`라우팅?` 다른 주소에 다른 화면을 보여주는 것! 리액트 라우터, 리치 라우터, Next.js등
 
-# SPA의 단점
+- SPA의 단점
 
 SPA의 단점은 앱의 규모가 커지면 자바스크립트 파일이 너무 커지는 것. 페이지 로딩시 실제로 방문하지 않을 페이지의 스크립트도 불러온다. => 코드 스플리팅 으로 해결
 
@@ -71,25 +71,30 @@ search값에서 특정 값을 읽어오기 위해서는 이 문자열을 객체 
 ### 13.5 서브 라우트
 
 서브 라우트는 라우트 내부에 또 라우트를 정의하는 것
+라우트로 사용되고 있는 컴포넌트의 내부에 Route 컴포넌트를 또 사용하면 된다.
+
+`<Route path="/profiles" exact render={() => <div>사용자를 선택해 주세요.</div>}>
+<Route Path="/profiles/:username" component={Profile}/>`
+component 대신 render라는 props를 넣어주어, 컴포넌트 자체 전달이 아닌, 보여 주고 싶은 JSX를 넣어준다.
 
 ### 13.6 리액트 라우터 부가 기능
 
-# history
+- history
 history 객체는 라우트로 사용된 컴포넌트에 match, location과 함께 전달되는 props중 하나
 이 객체를 통해 컴포넌트 내에 구현하는 메서드에서 라우터 API를 호출할 수 있다.
 
 history란!
 특정 버튼 눌렀을 때 뒤로가기, 로그인 후 화면 전환, 다른 페이지로 이탈하는거 방지
 
-# withRouter
+- withRouter
 withRouter 함수는 Hoc(Higher-order-Component)
 라우트로 사용된 컴포넌트가 아니어도 match, location, history 객체를 접근할 수 있게 해줌.
 
-# Switch
+- Switch
 Switch 컴포넌트는 여러 Router를 감싸서 그중 일치하는 단 하나의 라우트만을 렌더링
 SWitch를 사용하면 모든 규칙과 일치하지 않을 때 보여줄 Not Found페이지 구현 가능
 
-# NavLink
+- NavLink
 현재 경로와 Link에서 사용하는 경로가 일치하는 경우 특정 스타일 혹은 css클래스를 적용할 수 있는 컴포넌트
 
 링크가 활성화되었을 때의 스타일을 적용할 때는 activeStyle값을,
@@ -167,8 +172,7 @@ increase(0, result =>{
 => 콜백지옥!
 
 
-# Promise
-
+- Promise
 Promise는 콜백 지옥 같은 코드가 형성되지 않게 하는 방안
 
 ```
@@ -219,7 +223,7 @@ increase(0)
 .then을 사용하여 그다음 작업을 설정!
 => 콜백지옥 형성x
 
-# async / await
+- async / await
 
 Promise를 더욱 쉽게 사용할 수 있도록 해주는 ES8 문법
 함수 앞부분에 async 키워드 추가하고,
