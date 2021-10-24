@@ -15,7 +15,7 @@ SPA(Single Page Application)는 말 그대로 한 개의 페이지로 이루어�
 
 - 라우팅? 다른 주소에 다른 화면을 보여주는 것! 리액트 라우터, 리치 라우터, Next.js등
 
-## SPA의 단점
+# SPA의 단점
 
 SPA의 단점은 앱의 규모가 커지면 자바스크립트 파일이 너무 커지는 것. 페이지 로딩시 실제로 방문하지 않을 페이지의 스크립트도 불러온다. => 코드 스플리팅 으로 해결
 
@@ -43,7 +43,9 @@ Link컴포넌트 자체는 a태그로 이루어져 있지만, 페이지 전환�
 
 ### 13.3 Route 하나에 여러 개의 path 설정하기
 
-내용 placeholder
+Router룰 하나만 사용하면서, path를 두개를 주면 된다
+`<Route path={['/about', '/info']} component={About}/>`
+를 하면, localhost:3000/about 와 localhost:3000/info 가 같은 화면이 나타난다.
 
 ### 13.4 URL 파라미터와 쿼리
 
@@ -72,22 +74,22 @@ search값에서 특정 값을 읽어오기 위해서는 이 문자열을 객체 
 
 ### 13.6 리액트 라우터 부가 기능
 
-## history
+# history
 history 객체는 라우트로 사용된 컴포넌트에 match, location과 함께 전달되는 props중 하나
 이 객체를 통해 컴포넌트 내에 구현하는 메서드에서 라우터 API를 호출할 수 있다.
 
 history란!
 특정 버튼 눌렀을 때 뒤로가기, 로그인 후 화면 전환, 다른 페이지로 이탈하는거 방지
 
-## withRouter
+# withRouter
 withRouter 함수는 Hoc(Higher-order-Component)
 라우트로 사용된 컴포넌트가 아니어도 match, location, history 객체를 접근할 수 있게 해줌.
 
-## Switch
+# Switch
 Switch 컴포넌트는 여러 Router를 감싸서 그중 일치하는 단 하나의 라우트만을 렌더링
 SWitch를 사용하면 모든 규칙과 일치하지 않을 때 보여줄 Not Found페이지 구현 가능
 
-## NavLink
+# NavLink
 현재 경로와 Link에서 사용하는 경로가 일치하는 경우 특정 스타일 혹은 css클래스를 적용할 수 있는 컴포넌트
 
 링크가 활성화되었을 때의 스타일을 적용할 때는 activeStyle값을,
@@ -165,7 +167,7 @@ increase(0, result =>{
 => 콜백지옥!
 
 
-## Promise
+# Promise
 
 Promise는 콜백 지옥 같은 코드가 형성되지 않게 하는 방안
 
@@ -217,7 +219,7 @@ increase(0)
 .then을 사용하여 그다음 작업을 설정!
 => 콜백지옥 형성x
 
-## async / await
+# async / await
 
 Promise를 더욱 쉽게 사용할 수 있도록 해주는 ES8 문법
 함수 앞부분에 async 키워드 추가하고,
