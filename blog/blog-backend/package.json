@@ -8,6 +8,11 @@
     "koa": "^2.13.4"
   },
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "eslint": "^8.1.0",
+    "nodemon": "^2.0.14"
+  },
+  "scripts": {
+    "start": "node src",
+    "start:dev": "nodemon --watch src/ src/index.js"
   }
 }
