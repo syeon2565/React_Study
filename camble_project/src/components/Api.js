@@ -1,11 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 
-
-// More API functions here:
-// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
-
-// the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/Bx2-itLur/";
 let model, webcam, ctx, labelContainer, maxPredictions;
 
@@ -13,9 +8,6 @@ async function onclick() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
 
-    // load the model and metadata
-    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-    // Note: the pose library adds a tmPose object to your window (window.tmPose)
     model = await tmPose.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
@@ -77,6 +69,7 @@ const Api = () => {
         <div>
             <button type="button" onClick={onclick}>Start</button>
             <div><canvas id="canvas"></canvas></div>
+            <div id="label-container"></div>
         </div>
     )
 };
