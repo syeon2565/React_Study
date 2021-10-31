@@ -155,3 +155,172 @@ function App() {
   );
 }
 ```
+## 도입부
+- 앞으로의 섹션의 컴포넌트들은 부모트리에 <RecoilRoot />가 있다고 가정한다
+
+## Atoms
+- 애플리케이션 상태의 source of truth를 가진다.
+ex) todo리스트에서는 todo아이템을 나타내는 객체로 이루어진 배열이 source of truth
+
+```Javascript
+const todoListState = atom({
+  key: 'todoListState',
+  default: [],
+});
+```
+atom에 고유한 key를 주고 비어있는 배열 값을 default로 설정
+atom의 항목을 읽기 위해, 우리는 **useRecoilValue()** 훅을 TodoList컴포넌트에서 사용
+
+```Javascript
+function TodoList() {
+  const todoList = useRecoilValue(todoListState);
+
+  return (
+    <>
+      <TodoItemCreator />
+
+      {todoList.map((todoItem) => (
+        <TodoItem key={todoItem.id} item={todoItem} />
+      ))}
+    </>
+  );
+}
+```
+
+새로운 todo아이템을 생성하기 위해 todoListState내용을 업데이트하는 setter함수에 접근
+
+TodoItemCreator 컴포넌트의 setter함수를 얻기 위해 useSteRecoilState()훅 사용
+
+```Javascript
+function TodoItemCreator() {
+  const [inputValue, setInputValue] = useState('');
+  const setTodoList = useSetRecoilState(todoListState);
+
+  const addItem = () => {
+    setTodoList((oldTodoList) => [
+      ...oldTodoList,
+      {
+        id: getId(),
+        text: inputValue,
+        isComplete: false,
+      },
+    ]);
+    setInputValue('');
+  };
+
+  const onChange = ({target: {value}}) => {
+    setInputValue(value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={inputValue} onChange={onChange} />
+      <button onClick={addItem}>Add</button>
+    </div>
+  );
+}
+
+// 고유한 Id 생성을 위함
+let id = 0;
+function getId() {
+  return id++;
+}
+```
+
+기존 todo 리스트를 기반으로 새 todo 리스트를 만들 수 있도록 setter함수의 **updater**형식을 사용해야 한다.
+
+TodoItem컴포넌트는 todo리스트의 값을 표시하는 동시에 텍스트를 변경하고 항목을 삭제할 수 있다.
+todoListState를 읽고 항목 텍스트를 업데이트하고 완료된 것으로 표시하고, 삭제하는 데 사용하는 setter함수를 얻기 위해 userRecoilState()를 사용
+
+```Javascript
+function TodoItem({item}) {
+  const [todoList, setTodoList] = useRecoilState(todoListState);
+  const index = todoList.findIndex((listItem) => listItem === item);
+
+  const editItemText = ({target: {value}}) => {
+    const newList = replaceItemAtIndex(todoList, index, {
+      ...item,
+      text: value,
+    });
+
+    setTodoList(newList);
+  };
+
+  const toggleItemCompletion = () => {
+    const newList = replaceItemAtIndex(todoList, index, {
+      ...item,
+      isComplete: !item.isComplete,
+    });
+
+    setTodoList(newList);
+  };
+
+  const deleteItem = () => {
+    const newList = removeItemAtIndex(todoList, index);
+
+    setTodoList(newList);
+  };
+
+  return (
+    <div>
+      <input type="text" value={item.text} onChange={editItemText} />
+      <input
+        type="checkbox"
+        checked={item.isComplete}
+        onChange={toggleItemCompletion}
+      />
+      <button onClick={deleteItem}>X</button>
+    </div>
+  );
+}
+
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+function removeItemAtIndex(arr, index) {
+  return [...arr.slice(0, index), ...arr.slice(index + 1)];
+}
+```
+
+## selectors
+- 파생된 상태의 일부를 나타냄
+- 파생된 상태를 어떤 방법으로든 주어진 상태를 수정하는 순수 함수에 전달된 상태의 결과물로 생각할 수 있음
+
+* 파생된 상태는 다른 데이터에 의존하는 동적인 데이터를 만들 수 있기 때문에 ㄱ아력한 개념
+* 우리의 todo 리스트 애플리케이션 맥락에서는 다음과 같은 것들이 파상된 상태로 간주
+
+**필터링 된 todo리스트** : 전체 todo 리스트에서 일부 기준에 따라 특정 항목이 필터링 된 새 리스트(예: 이미 완료된 항목 필터링)를 생성되어 파생
+
+**Todo 리스트 통계** : 전체 todo 리스트에서 목록의 총 항목 수, 완료된 항목의 백분율 같은 리스트의 유용한 속성들을 계산하여 파생
+
+필터링 된 todo 리스트를 구현하기 위해서 우리는 atom에 저장될 수 있는 필터 기준을 선택해야함.
+우리가 사용하게 될 필터 옵션
+"Show All", "Show Completed", "Show Uncompleted"이며, 기본 값은 "Show All"이다.
+
+```Javascript
+const todoListFilterState = atom({
+  key: 'todoListFilterState',
+  default: 'Show All',
+});
+```
+todoListFilterState와 todoListState를 사용해서 필터링 된 리스트를 파생하는 filterTodoListState selector를 구성할 수 있음
+
+```Javascript
+const filteredTodoListState = selector({
+  key: 'filteredTodoListState',
+  get: ({get}) => {
+    const filter = get(todoListFilterState);
+    const list = get(todoListState);
+
+    switch (filter) {
+      case 'Show Completed':
+        return list.filter((item) => item.isComplete);
+      case 'Show Uncompleted':
+        return list.filter((item) => !item.isComplete);
+      default:
+        return list;
+    }
+  },
+});
+```
