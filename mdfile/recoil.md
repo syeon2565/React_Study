@@ -34,16 +34,17 @@ function FontButton(){
 }
 ```
 **Selectors**
-- Selector는 atoms나 다른 selectors를 입력으로 받아들이는 순수 함수다.
-- 상위의 atoms 또는 selectors가 업데이트되면 하위의 selector 함수도 다시 실행된다. 
-- 컴포넌트들은 selectors를 atoms처럼 구독할 수 있으며 selectors가 변경되면 컴포넌트이 다시 렌더링
+
+- Selector는 atoms나 다른 selectors를 입력으로 받아들이는 순수 함수
+- 상위의 atoms 또는 selectors가 업데이트되면 하위의 selector 함수 다시 실행 가능 
+- 컴포넌트들은 selectors를 atoms처럼 구독할 수 있음 (selectors가 변경되면 컴포넌트이 다시 렌더링)
 
 - Selectors는 상태를 기반으로 하는 파생 데이터를 계산하는 데 사용
 - 최소한의 상태 집합만 atoms에 저장하고 다른 모든 파생되는 데이터는 selectors에 명시한 함수를 통해 효율적으로 계산함으로써 쓸모없는 상태의 보존을 방지
 Selectors는 어떤 컴포넌트가 자신을 필요로하는지,
-또 자신은 어떤 상태에 의존하는지를 추적하기 때문에 이러한 함수적인 접근방식을 매우 효율적으로 만든다.
+또 자신은 어떤 상태에 의존하는지를 추적하기 때문에 이러한 함수적인 접근방식을 매우 효율적으로 만듦
 
-- 컴포넌트의 관점에서 보면 selectors와 atoms는 동일한 인터페이스를 가지므로 서로 대체할 수 있다.
+- 컴포넌트의 관점에서 보면 selectors와 atoms는 동일한 인터페이스를 가지므로 서로 대체가능
 
 ```Javascript
 const fontSizeLabelState = selector({
@@ -57,7 +58,8 @@ const fontSizeLabelState = selector({
 });
 ```
 get 속성은 계산될 함수
-- get 인자를 통해 atoms와 다른 selectors에 접근할 수 있다. 
+- get 인자를 통해 atoms와 다른 selectors에 접근 가능
+
 다른 atoms나 selectors에 접근하면 자동으로 종속 관계가 생성되므로,
 참조했던 다른 atoms나 selectors가 업데이트되면 이 함수도 다시 실행된다.
 
@@ -66,9 +68,9 @@ get 속성은 계산될 함수
 형식화된 글꼴 크기 레이블을 출력으로 반환하는 순수 함수처럼 동작한다.
 
 Selectors는 useRecoilValue()를 사용해 읽을 수 있다.
-useRecoilValue()는 하나의 atom이나 selector를 인자로 받아 대응하는 값을 반환한다. 
+useRecoilValue()는 하나의 atom이나 selector를 인자로 받아 대응하는 값 반환
 fontSizeLabelState selector는 writable하지 않기 때문에 useRecoilState()를 이용하지 않는다. 
-(writable한 selectors에 대한 더 많은 정보는 selector API reference에 자세히 기술되어 있다.)
+
 ```Javascript
 function FontButton() {
   const [fontSize, setFontSize] = useRecoilState(fontSizeState);
@@ -187,7 +189,7 @@ function TodoList() {
 }
 ```
 
-새로운 todo아이템을 생성하기 위해 todoListState내용을 업데이트하는 setter함수에 접근
+새로운 todo아이템을 생성하기 위해 todoListState내용을 업데이트하는 setter함수
 
 TodoItemCreator 컴포넌트의 setter함수를 얻기 위해 useSteRecoilState()훅 사용
 
@@ -227,9 +229,9 @@ function getId() {
 }
 ```
 
-기존 todo 리스트를 기반으로 새 todo 리스트를 만들 수 있도록 setter함수의 **updater**형식을 사용해야 한다.
+기존 todo 리스트를 기반으로 새 todo 리스트를 만들 수 있도록 setter함수의 **updater**형식 사용
 
-TodoItem컴포넌트는 todo리스트의 값을 표시하는 동시에 텍스트를 변경하고 항목을 삭제할 수 있다.
+TodoItem컴포넌트는 todo리스트의 값을 표시하는 동시에 텍스트를 변경하고 항목 삭제 가능
 todoListState를 읽고 항목 텍스트를 업데이트하고 완료된 것으로 표시하고, 삭제하는 데 사용하는 setter함수를 얻기 위해 userRecoilState()를 사용
 
 ```Javascript
@@ -326,15 +328,6 @@ const filteredTodoListState = selector({
 ```
 - TodoListStats 컴포넌트를 구현하기 위해 동일한 개념을 사용
 
-
-
-todo 항목들의 총개수
-완료된 todo 항목들의 총개수
-완료되지 않은 todo 항목들의 총개수
-완료된 항목의 백분율
-
-각 통계에 대해 selector를 만들 수 있지만, 필요한 데이터를 포함하는 객체를 반환하는 selector 하나를 만드는 것이 더 쉬운 방법일 것이다. 우리는 이 selector를 'toDoListStatsState'라고 부를 것이다.
-
 필요한 데이터를 포함하는 객체를 반환하는 selector 하나를 만드는 것이 더 쉬운 방법임
 ```Javascript
 const todoListStatsState = selector({
@@ -355,7 +348,7 @@ const todoListStatsState = selector({
   },
 });
 ```
-todoListStatsState값을 읽기 위해, 우리는 useRecoilValue()를 한 번 더 사용할 것이다.
+todoListStatsState값을 읽기 위해, useRecoilValue()를 한 번 더 사용
 
 ```Javascript
 function TodoListStats() {
