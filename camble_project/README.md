@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# camble
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. 아이디어 전달
 
-## Available Scripts
+아이디어 설명 글을 아무리 잘 썼더라도, 보는 사람에 따라 이해한 내용이 다를 수 있습니다. 아이디어를 내신 분은 **자신의 아이디어를 최대한 디테일하게, 자신이 어떤 의도로 이 아이디어를 생각했는지** 등을 팀원들에게 설명해주시고, 그 내용을 이 아래에 **누가 봐도 무슨 아이디어인지 알아볼 수 있게** 작성해주세요!
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+ 현대 사회에서 pc 및 스마트 기기 사용이 증가함에 따라 거북목 증후군 발병률이 증가했습니다. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+본인은 하지 않으려고 노력해도, 무의식적으로 습관이 되어 있을 수 있어 고치기 어려울 수 있습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+구글에서 만든 api인 teachable machine은 기계학습 시켜놓은 api입니다.
 
-### `yarn test`
+올바른 자세와 거북목 자세의 이미지 데이터들을 학습 시켜, 사용자가 거북목의 증상이 보일 시 사용자에게 알림을 주어 경각심을 주는 서비스입니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+알림을 들은 사용자는 올바른 자세를 유지하려고 노력하게 유도하는 서비스입니다.
 
-### `yarn build`
+해당 서비스는 자세 습관을 교종하도록 유도하여 거북목 증후군을 치료 및 예방할 수 있습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+거북목 증후군?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 목의 앞 근육은 길어지고, 위쪽 근육이 짧아져 몸통에 비해 머리가 앞으로 나와 있는 자세
+- 수술이나 약물 치료보다 자세 습관을 고치는것이 효과적
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+추후, 백엔드 
 
-### `yarn eject`
+- 자신의 사용 기록? 그래프 확인
+- 사진으로 확인
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 2. 아이디어의 장점 나열
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+모두 머리 속에 생각하는 아이디어가 동일시 되었다면, 이제 그 아이디어가 가지고 있는 장점을 나누어봅시다. 사소한 것이라도 좋아요. 이 아이디어를 **다른 사람들에게 전달할 때 어필할 만한 부분들을 찾아내면 됩니다!**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 접근성이 좋다. (pc사용중에 계속 사용가능)
 
-## Learn More
+## 3. 아이디어의 단점 나열
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+아쉽지만 모든 아이디어에는 분명 단점도 존재합니다. 그렇기에 아이디어를 고민하는 사람들은 해당 아이디어의 단점이 무엇인지 명확하게 알고 있어야 합니다. 하지만 누군가 제시한 아이디어의 단점을 이야기하는 것이 어려울 수 있어요. **단점을 이야기하는 사람들은 아이디어를 제시한 사람의 감정은 상하지 않게, 아이디어를 제시한 사람은 최대한 객관적으로 피드백을 받아주세요!**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+- (티처블머신 이용시) 정확한 거북목 측정이 어려움
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 4. 타겟의 니즈 파악
 
-### Analyzing the Bundle Size
+우리가 낸 아이디어를 실제 프로덕트로 구현했는데 아무도 사용하지 않는다면 그것만큼 슬픈 것이 없을 겁니다. 따라서 우리가 정의한 타겟들이 정말로 우리가 만들 서비스를 사용할 것인지를 파악해야 합니다. 이 부분은 해당 타겟들에게 설문조사를 하는 방법도 있겠지만, 이미 인터넷에 관련 자료가 있을 수도 있어요! **다양한 방법으로 우리의 타겟이 정말 이 서비스를 사용할지 파악하시면 됩니다!**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+- pc 사용량이 많은 직장인 및 대학생
+- 스마트 기기를 사용을 하는 누구나
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 5. 비슷한 플랫폼 조사
 
-### Advanced Configuration
+세상은 넓지만 사람들이 하는 생각들은 전부 비슷합니다. 아마 내가 했던 생각은 누군가 먼저 했을 가능성이 높아요. 그리고 우리가 만들려고 생각한 이 서비스를 누군가가 먼저 만들었을 수도 있습니다. 과연 이 서비스와 비슷한 서비스가 있는지 조사해보시면 됩니다. 이미 있다면 그 서비스의 장점은 받아오고 단점을 보완하는 새로운 서비스를 만들면 되고, 없다면 내가 선구자가 되면 됩니다!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 6. UI/UX 스케치
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+내가 머리속에서 가지고 있는 아이디어를 누군가에게 전달한다는 것은 쉽지 않은 일이에요. 하지만 우리가 아이디어톤에서 다른 사람들에게 객관적인 피드백을 받기 위해서는 우리의 아이디어가 무엇인지 분명히 전달해야 합니다. 이 때 가장 쉬운 방법은 아이디어를 **이미지화** 시키는 것입니다. 아마 스케치를 그리면서 팀원간에 아직 알지 못했던 부분들을 채워나갈 수도 있을 거구요.
