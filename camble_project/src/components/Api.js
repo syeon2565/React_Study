@@ -67,7 +67,7 @@ function drawPose(pose) {
 const Api = () => {
     return (
         <div>
-            <button type="button" onClick={onclick}>Start</button>
+            <button type="button" onClick={onclick}>측정</button>
             <div><canvas id="canvas"></canvas></div>
             <div id="label-container"></div>
         </div>
