@@ -1,5 +1,11 @@
-// // eslint-disable-next-line no-global-assign
-// require = require('esm')(module /*, options*/);
-// module.exports = require('./main.js');
+const Koa = require('koa');
 
-const hello = 'hello';
+const app = new Koa();
+
+app.use((ctx) => {
+  ctx.body = 'hello world';
+});
+
+app.listen(4000, () => {
+  console.log('Listening to port %d', 4000);
+});
