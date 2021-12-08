@@ -10,11 +10,11 @@
     "koa-router": "^10.1.1"
   },
   "devDependencies": {
-    "eslint": "^8.1.0",
+    "eslint": "^8.4.1",
     "nodemon": "^2.0.14"
   },
   "scripts": {
-    "start": "node src",
-    "start:dev": "nodemon --watch src/ src/index.js"
+    "start": "node -r esm src",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
   }
 }

@@ -16,4 +16,4 @@ brew services list
 `cat mongo.log`
 
 # mongo 서버 프로세스 확인
-ps -ef | grep mongosudo mongod —dbpath ~/data/db
+ps -ef | grep mongo
