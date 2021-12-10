@@ -10,7 +10,8 @@
         "SharedArrayBuffer":"readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 13
+        "ecmaVersion": 13,
+        "sourceType": "module"
     },
     "rules": {
         "no-unused-vars":"warn",

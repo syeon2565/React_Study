@@ -6,10 +6,10 @@ const mongoose = require('mongoose');
 
 //비구조화 할당을 통해 process.env 내부 값에 대한 레퍼런스 만들기
 // eslint-disable-next-line no-undef
-const { PORT } = process.env;
+const { PORT, MONGO_URI } = process.env;
 
 mongoose
-  .connect('mongodb://localhost:27017/blog', { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('connected to MongoDB');
   })
