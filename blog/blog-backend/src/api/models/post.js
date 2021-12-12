@@ -15,4 +15,3 @@ const PostSchema = new Schema({
 const Post = mongoose.model('Post', PostSchema); //모델 인스턴스 만들기 (스키마이름, 스키마 객체)
 export default Post; //내보내기
 
-//

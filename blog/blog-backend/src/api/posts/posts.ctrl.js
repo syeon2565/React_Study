@@ -38,6 +38,29 @@ export const read = async ctx => {
     }
 };
 
-export const remove = ctx => {};
+export const remove = async ctx => {
+     const { id } = ctx.params;
+     try {
+         await Post.findByIdAndRemove(id).exec();
+         ctx.status = 204; // No constent (성공은 했지만 응답할 데이터 X)
+     } catch (e) {
+         ctx.throw(500, e);
+     }
+};
 
-export const update = ctx => {};
+export const update = async ctx => {
+    const { id } = ctx.params;
+    try { 
+        const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+            new: true, //업데이트 된 데이터 반환
+            // false 이면? 업데이트 되기 전 데이터 반환
+        }).exec();
+        if(!post){
+            ctx.status = 404;
+            return;
+        }
+        ctx.body = post;
+    } catch(e) {
+        ctx.throw(500, e);
+    }
+};
