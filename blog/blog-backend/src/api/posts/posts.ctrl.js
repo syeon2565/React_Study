@@ -1,5 +1,6 @@
 import Post from '../../models/post';
 import mongoose from 'mongoose';
+import Joi from 'joi';
 
 const {ObjectId} = mongoose.Types;
 
@@ -12,7 +13,21 @@ export const checkObjectId = (ctx, next) =>{
     return next;
 }
 
-export const wirte = async ctx => {
+export const write = async ctx => {
+    const schema = Joi.object().keys({
+        title: Joi.string().required(),
+        body: Joi.string().required(),
+        tags: Joi.array()
+            .items(Joi.Stirng())
+            .required(),
+    });
+
+    const result = schema.validate(ctx.request.body);
+    if(result.error){
+        ctx.status = 400;
+        ctx.body = result.error;
+        return;
+    }
     const { title, body, tags } = ctx.request.body;
     const post = new Post({
         title,
@@ -20,10 +35,10 @@ export const wirte = async ctx => {
         tags,
     });
     try {
-        await post.save(); //save 함수를 실행시켜야 db에 저장
+        await post.save();
         ctx.body = post;
     } catch (e) {
-        ctx.throw(500,e);
+        ctx.throw(500, e);
     }
 };
 
@@ -62,6 +77,18 @@ export const remove = async ctx => {
 
 export const update = async ctx => {
     const { id } = ctx.params;
+    const schema = Joi.object().keys({
+        title:Joi.string(),
+        body:Joi.string(),
+        tags:Joi.array().items(Joi.string()),
+    });
+
+    const result = schema.validate(ctx.request.body);
+    if(result.error){
+        ctx.status = 400;
+        ctx.body = result.error;
+        return;
+    }
     try { 
         const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
             new: true, //업데이트 된 데이터 반환
