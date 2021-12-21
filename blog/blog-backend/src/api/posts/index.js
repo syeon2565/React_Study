@@ -8,7 +8,7 @@ posts.post('/', postsCtrl.wirte);
 // posts.get('/:id', postsCtrl.checkObjectId, postsCtrl.read);
 // posts.delete('/:id', postsCtrl.checkObjectId, postsCtrl.remove);
 // posts.patch('/:id', postsCtrl.checkObjectId, postsCtrl.update);
-
+// 위에 세줄을 아래처럼 리팩토링
 const post = new Router();
 post.get('/', postsCtrl.read);
 post.delete('/', postsCtrl.remove);
